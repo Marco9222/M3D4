@@ -1,0 +1,684 @@
+<!-- Abbiamo bisogno di un sito web per un'agenzia di viaggi!
+
+In questa pagina aggiungerai destinazioni di posti che sogni di visitare in futuro.
+
+REGOLE
+
+Il progetto dev'essere caricato in una nuova repository su GitHub e linkata al tuo Docente.
+Puoi usare Google / StackOverflow, MA ti suggeriamo caldamente di riferirti principalmente alla documentazione fornita, 
+per non perderti in ricerche infruttuose per troppo tempo.
+
+Prova il tuo lavoro su varie risoluzioni di schermo, ingrandendo e rimpicciolendo la finestra, 
+e soprattutto usando i developer tools del browser che forniscono l'emulatore di svariati device
+ sul quale potrai vedere esattamente come si comporta il tuo layout.
+
+Inizia utilizzando i componenti preformati di Bootstrap4.6 per creare la tua pagina (modificali 
+all'occorrenza utilizzando le utility classes di bootstrap: colori, spazi, margini, dimensioni etc...)
+Usa container > row > col in questo ordine per ottenere un layout responsive perfetto.
+
+EXERCISES:
+
+EXTRAS
+
+12) Crea un bottone vicino ad ogni sezione per collassarla e riaprirla se premuto. OK
+13) Crea la possibilità di contare il numero di "viaggi" presenti sulla pagina. VEDERE
+
+14) Crea un modale con un messaggio e un campo email. OK
+15) Quando l'utente cliccherà su "Contattaci", fai in modo che il modale venga visualizzato. OK
+
+16) Crea una funzione che aggiunga un badge con la scritta "HOT" su ognuna delle offerte "Welcome Summer".
+17) Crea una funzione che rimuova tutte le "card" dalla pagina
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="M3D4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!--NAVBAR-->
+    <!--
+    1) Implementa una navbar. Collega ogni sezione della pagina agli elementi del menu.
+    2) Aggiungi un logo alla navbar, una qualsiasi immagine.-->
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="navbar.jpg" alt="" width="30" height="30" style="border-radius:50%;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#jumbotron">La nostra agenzia</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#offertedellasettimana">Offerte della settimana</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#welcomesummer">Welcome Summer</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#offertadelgiorno">Offerta del giorno</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lastminute">Last minute</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonial">Testimonial</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+
+    <!--JUMBOTRON-->
+
+    <!--3) Aggiungi una sezione Jumbotron con il nome e il payoff dell'agenzia. OK-->
+
+    <div class="jumbotron" id="jumbotron">
+        <h1 class="display-4 text-center"><b>Il viaggiatore</b></h1>
+        <div style="text-align:center"><img src="navbar.jpg" style="width:10%; height:10%;border-radius:50%;"></div>
+        <p class="lead text-center">Agenzia di viaggi <br> per vacanze programmate e last-minute</p>
+
+        <hr class="my-4 text-center">
+
+        <p class="text-center">Vieni a scoprire le nostre offerte della settimana e le nostre offerte
+            last minute</p>
+        <p id="numeroviaggi"></p>
+        <p class="lead text-center">
+            <a class="btn btn-primary" href="#offertadelgiorno" role="button">Offerta del giorno</a>
+            <a class="btn btn-primary" href="#lastminute" role="button">Offerte last minute</a>
+        </p>
+    </div>
+
+    <br>
+
+    <!--OFFERTE DELLA SETTIMANA-->
+
+    <!--4) Implementa la sezione "Offerta della settimana". Qui mostrerai 4 destinazioni.
+
+    In questa sezione dovranno esserci:
+
+    4 card per destinazioni per linea a schermo grande
+    3 card per destinazioni per linea a schermo medio (tablet)
+    2 card per destinazioni per linea a schermo piccolo (mobile)-->
+
+    <div class="container text-center">
+        <hr class="my-4 text-center" id="offertedellasettimana">
+        <h3 class="display-5">Offerte della settimana</h3>
+        <h5>Le mete consigliate della settimana</h5>
+
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1"
+            aria-expanded="false" aria-controls="collapse1">Mostra le offerte</button>
+
+        <hr class="my-4 text-center">
+        <!--CARD1-->
+        <div class="row collapse" id="collapse1">
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card viaggio" style="height:100%;">
+                    <img class="card-img-top" src="canarie.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Isole Canarie</h5>
+                        <hr>
+                        <p class="card-text testodescrizione">Le Isole Canarie (in spagnolo: Islas Canarias) sono un
+                            grande arcipelago
+                            situato nell'oceano
+                            Atlantico al largo dell'Africa nord-occidentale, composto da sette isole maggiori e altre
+                            isolette minori,
+                            tutte di origine vulcanica, che formano una comunità autonoma della Spagna. Grazie alla
+                            posizione geografica,
+                            le Canarie sono la regione più meridionale e più occidentale della Spagna.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD2-->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card viaggio" style="height:100%;">
+                    <img class="card-img-top" src="seychelles.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Seychelles</h5>
+                        <hr>
+                        <p class="card-text">Le Seychelles, ufficialmente la Repubblica delle Seychelles, sono uno Stato
+                            insulare il cui territorio è costituito da un arcipelago di 115 isole,
+                            localizzato nell'Oceano Indiano a circa 1500 km a est delle coste dell'Africa Orientale.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD3-->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card viaggio">
+                    <img class="card-img-top" src="egadi.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Isole Egadi</h5>
+                        <hr>
+                        <p class="card-text">Le isole Egadi (Ìsuli Ègadi in siciliano) sono un arcipelago italiano, in
+                            Sicilia,
+                            a cavallo tra basso Tirreno e canale di Sicilia. Posto a circa 7 km dalla costa occidentale
+                            della Sicilia,
+                            fra Marsala e Trapani, nel libero consorzio comunale di Trapani, l'arcipelago consta di tre
+                            isole e due isolotti, più una serie di scogli e faraglioni. Note già in antichità col
+                            nome
+                            latino Aegates che proviene dal greco Aigatai,
+                            ossia «isole delle capre», sull'arcipelago è sita la Riserva naturale marina Isole Egadi.
+                        </p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD4-->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card viaggio" style="width: 18rem;">
+                    <img class="card-img-top" src="santorini.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Santorini</h5>
+                        <hr>
+                        <p class="card-text">Santorini è l'isola più meridionale dell'arcipelago delle Cicladi, nel mare
+                            Egeo.
+                            La sua superficie è di 79,19 km². Il nome attuale "Santorini", una corruzione del nome
+                            Sant'Erini,
+                            le fu dato dai veneziani in onore di Santa Irene di Tessalonica, martire del 304,
+                            a cui era dedicata la basilica di Perissa, località della parte sud-orientale dell'isola.
+                            Dal punto di vista amministrativo, rappresenta parte del comune omonimo, nella periferia
+                            dell'Egeo Meridionale.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-4 text-center">
+
+    <!--WELCOME SUMMER-->
+    <!--
+    5) Implementa la sezione "Welcome Summer". Qui mostrerai 6 destinazioni al tuo utente.
+    In questa sezione dovranno esserci:
+    
+    6 card per destinazioni per linea a schermo grande
+    3 card per destinazioni per linea a schermo medio (tablet)
+    2 card per destinazioni per linea a schermo piccolo (mobile)
+    8) Aggiungi nella sezione "Welcome Summer" un'ombra grande ad ogni card.
+-->
+
+    <div class="container-fluid text-center" id="welcomesummer">
+        <h3 class="display-5">Welcome Summer</h3>
+        <h5>Le migliori mete per le vacanze estive</h5>
+
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2"
+            aria-expanded="false" aria-controls="collapse2">Mostra le offerte</button>
+
+        <hr class="my-4 text-center">
+
+        <div class="row g-0 collapse" id="collapse2">
+
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card shadow viaggio" style="height:100%;">
+
+                    <img class="card-img-top" src="isola-elba.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Isola d'Elba</h5>
+                        <div class="hot nascosto">HOT</div>
+                        <hr>
+                        <p class="card-text testodescrizione">L'isola d'Elba è un'isola situata tra il canale di
+                            Piombino a est, a circa 10 chilometri dalla costa, il mar Tirreno a sud e il canale di
+                            Corsica a ovest.
+                            È la più grande delle isole dell'arcipelago toscano e la terza più grande d'Italia (223
+                            km²). L'Elba, assieme alle altre isole dell'arcipelago (Pianosa, Capraia, Gorgona,
+                            Montecristo, Giglio e Giannutri), fa parte del Parco nazionale dell'Arcipelago Toscano.
+                            Amministrativamente è suddivisa in 7 comuni facenti parte della provincia di Livorno.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD2-->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card shadow viaggio" style="height:100%;">
+                    <img class="card-img-top" src="seychelles.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Capri</h5>
+                        <div class="hot nascosto">HOT</div>
+                        <hr>
+                        <p class="card-text">Capri è un'isola nel golfo di Napoli, appartenente all'arcipelago Campano e
+                            parte della città metropolitana di Napoli, situata di fronte alla penisola sorrentina. Dal
+                            punto di vista amministrativo è suddivisa tra i comuni di Capri e Anacapri.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD3-->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card shadow viaggio">
+                    <img class="card-img-top" src="gallipoli.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Le spiagge del Salento: Gallipoli, Otranto, Lecce e Santa Maria di Leuca
+                        </h5>
+                        <div class="hot nascosto">HOT</div>
+                        <hr>
+                        <p class="card-text">La penisola del Salento è una delle regioni geografiche italiane più
+                            famose. Patria di artisti e musicisti contemporanei, è riconosciuta come una delle zone
+                            balneari più belle della nazione.
+                            Particolarmente noti i comuni di Gallipoli, Otranto, Lecce e Santa Maria di Leuca, ricchi di
+                            spiagge di sabbia paradisiache. Le location più belle sono della zona sono Porto Cesareo,
+                            Torre Lapillo, Alimini e le incredibili "Maldive del Salento".
+                        </p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD4-->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card shadow viaggio">
+                    <img class="card-img-top" src="sanvitolocapo.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">San Vito Lo Capo</h5>
+                        <div class="hot nascosto">HOT</div>
+                        <hr>
+                        <p class="card-text">San Vito Lo Capo (Santu Vitu in siciliano) è un comune italiano di 4 786
+                            abitanti del libero consorzio comunale di Trapani in Sicilia.
+
+                            Località balneare, sorge all'estremità ovest del golfo di Castellammare delimitandone
+                            l'inizio della vasta insenatura che da Capo San Vito si apre fino a Capo Rama.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD5-->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card shadow viaggio">
+                    <img class="card-img-top" src="cagliari.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Cagliari</h5>
+                        <div class="hot nascosto">HOT</div>
+                        <hr>
+                        <p class="card-text">Cagliari è un comune italiano di 148 550 abitanti, capoluogo della regione
+                            autonoma della Sardegna. La sua città metropolitana conta 418 828 abitanti ed è la più
+                            piccola d’Italia.
+                            Sede universitaria e arcivescovile e città dalla storia plurimillenaria, è il centro
+                            amministrativo storico dell'isola essendo stata, sotto la denominazione di Caralis,
+                            capoluogo della provincia di Sardinia et Corsica durante il periodo romano e successivamente
+                            capitale del Regno di Sardegna, dal 1324 al 1720, e poi dal 1798 al 1814. Il suo porto è
+                            classificato "internazionale" per via della sua importanza; svolge funzioni commerciali,
+                            industriali, turistiche e di servizio per passeggeri.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--CARD6-->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card shadow viaggio">
+                    <img class="card-img-top" src="senigallia.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Senigallia</h5>
+                        <div class="hot nascosto">HOT</div>
+                        <hr>
+                        <p class="card-text">Senigallia è un comune italiano di 43 984 abitanti della provincia di
+                            Ancona nelle Marche. È la prima località della regione per arrivi e presenze turistiche.
+                            La zona di Senigallia costituisce il confine linguistico fra le lingue gallo-italiche e i
+                            dialetti italiani mediani.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--OFFERTA DEL GIORNO-->
+    <!--6) Implementa la sezione "Offerta del giorno". Qui avrai:
+
+    66% dello spazio dedicato all'immagine del luogo di destinazione
+    33% dedicato al nome, date, prezzo e breve descrizione del luogo
+    7) Rendi invisibile la sezione "Offerta del giorno" su schermi mobile. VEDERE
+-->
+
+    <div class="container-fluid text-center d-none d-lg-block" id="offertadelgiorno">
+        <hr class="my-4 text-center">
+        <h3 class="display-5">Offerta del giorno</h3>
+        <h5>La migliore meta, scelta da noi giorno per giorno</h5>
+
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3"
+            aria-expanded="false" aria-controls="collapse3">Mostra l'offerta</button>
+
+        <hr class="my-4 text-center">
+
+        <div class="row collapse" id="collapse3">
+
+            <div class="col-8 viaggio">
+                <img alt="img" src="maiorca.jpg" style="height:80%;">
+            </div>
+
+            <div class="col-4 offertadelgiorno">
+                <h2>Maiorca</h2>
+                <h3>Giugno - Settembre 2022</h3>
+                <h4>A partire da 800€</h4>
+                <br>
+                <br>
+                <div style="text-align:left;">Maiorca è la più grande delle isole Baleari,
+                    la settima fra le più grandi isole del Mediterraneo.
+                    Ha 859 289 abitanti. Il capoluogo è Palma di Maiorca.</div>
+                <br>
+                <div>
+                    <a href="#" class="btn btn-primary">Vedere disponibilità</a>
+                    <a href="#" class="btn btn-success">Prenota ora</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--LAST MINUTE-->
+    <!--9) Crea una sezione "Last Minute", in cui mostrerai le immagini 
+    delle destinazioni last minute sotto forma di card.-->
+
+    <div class="container text-center" id="lastminute">
+
+        <hr class="my-4 text-center">
+        <h3 class="display-5">Last minute</h3>
+        <h5>Le migliori offerte last minute con prezzi irripetibili</h5>
+
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4"
+            aria-expanded="false" aria-controls="collapse4">Mostra le offerte</button>
+
+        <hr class="my-4 text-center">
+
+        <div class="row collapse" id="collapse4">
+
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card viaggio" style="height:100%;">
+                    <img class="card-img-top" src="palermo.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Palermo</h5>
+                        <hr>
+                        <p class="card-text testodescrizione">Palermo è un comune italiano di 628 317 abitanti, quinto
+                            in Italia per popolazione, capoluogo della Regione Siciliana e dell'omonima città
+                            metropolitana.
+                            Ogni giorno alla popolazione locale si aggiungono oltre 200.000 pendolari,
+                            provenienti in gran parte dalle altre zone dell'Isola. La città si estende sulla pianura
+                            Conca d'Oro ed è bagnata dal suo golfo omonimo e circondata dalla barriera dei Monti di
+                            Palermo.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card viaggio" style="height:100%;">
+                    <img class="card-img-top" src="marsiglia.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Marsiglia</h5>
+                        <hr>
+                        <p class="card-text testodescrizione">Marsiglia è la più grande città della Francia meridionale,
+                            capoluogo della regione Provenza-Alpi-Costa Azzurra e del dipartimento delle Bocche
+                            del Rodano, oltre che il primo porto della Francia, quarto del Mediterraneo e a livello
+                            europeo.
+                            Fondata dai Greci durante l'Antichità, è una delle più antiche città francesi.
+                            Considerando il numero di abitanti della sola municipalità risulta la seconda
+                            città della Francia, dopo Parigi. La sua Metropoli Aix-Marseille Provence con 1 895 600
+                            abitanti
+                            è anche la seconda di Francia dopo quella del Grande Parigi però l'area urbana di Lione
+                            supera
+                            i due milioni di abitanti, contendendo a volte a Marsiglia il primato di seconda città di
+                            Francia.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card viaggio" style="height:100%;">
+                    <img class="card-img-top" src="venezia.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Venezia</h5>
+                        <hr>
+                        <p class="card-text testodescrizione">Venezia
+                            è un comune italiano di 253 922 abitanti, il cui centro storico
+                            (limitato ai sestieri della città lagunare) al 1º novembre 2017 ne contava
+                            53 609, capoluogo dell'omonima città metropolitana e della regione Veneto.
+                            Secondo comune della regione per popolazione dopo Verona e primo in
+                            Veneto per superficie, comprende sia territori insulari sia di terraferma
+                            ed è articolato attorno ai due principali centri di Venezia
+                            (al centro dell'omonima laguna) e di Mestre (nella terraferma).</p>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Info</a>
+                        <a href="#" class="btn btn-success">Prenota ora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!--TESTIMONIAL-->
+    <!--10) Crea una sezione "Testimonial", dove l'utente potrà trovare alcuni feedback da utenti fittizi.
+    -->
+
+    <div class="container text-center" id="testimonial">
+        <hr class="my-4 text-center">
+        <h3 class="display-5">Testimonial</h3>
+        <h5>Dicono di noi</h5>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5"
+            aria-expanded="false" aria-controls="collapse5">Mostra ultime recensioni</button>
+
+        <hr class="my-4 text-center">
+
+        <div class="row collapse" id="collapse5">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Marco D.</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">"Due settimane di totale relax"</h6>
+                        <p class="card-text">Una vacanza in Grecia perfetta da ogni punto di vista</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Federico B.</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">"Perfetto""</h6>
+                        <p class="card-text">Una vacanza da ripetere</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Giovanni G.</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">"Una vacanza da sogno"</h6>
+                        <p class="card-text">Organizzazione, viaggio e permanenza al top. Consigliatissima come agenzia.
+                        </p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!--11) Crea un footer con le informazioni dell'agenzia e un bottone "Contattaci".-->
+
+    <footer class="text-center" style="background-color:rgb(152, 183, 231)">Il Viaggiatore Srl - Via Manzoni 25, Milano
+        IT
+        <br>
+        <hr>
+        <button class="btn btn-primary" type="button" href="#" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Contattaci</button>
+    </footer>
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Il viaggiatore - agenzia di viaggi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    Per informazioni contattaci all'indirizzo email: <br><b>info@ilviaggiatore.it</b><br>A presto!
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi messaggio</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <button onclick="hideCards()">Nascondi cards</button>
+    <button onclick="showHot()">Mostra badge Hot</button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        function numeroViaggi() {
+            let numeroViaggi = document.querySelectorAll(".viaggio");
+            let arr = Array.from("numeroViaggi");
+            let pannello = document.getElementById("numeroviaggi");
+            let y = arr.length;
+            pannello.innerHTML = "I nostri viaggi disponibili: " + y;
+        };
+
+        window.onload = numeroViaggi();
+
+        function hideCards(){
+            let cards = document.querySelectorAll(".card");
+            for(let i = 0;i<cards.length;i++){
+                cards[i].classList.toggle("nascosto");
+            }
+        };
+
+        function showHot(){
+            let badge = document.querySelectorAll(".hot");
+            for(let i = 0;i<badge.length;i++){
+                badge[i].classList.toggle("nascosto");
+            }
+        };
+
+
+
+    </script>
+</body>
+
+</html>
